@@ -1,10 +1,14 @@
-<div class="center hero-unit">
-<h1>FINALDO - wiesz ile masz :)</h1>
-	<p>
-		Póki co odwiedź naszego
-		<%= link_to  "bloga", "http://blog.finaldo.pl", target: "_blank" %>
-	</p>
-	<p>
-		<a href="#">Zarejestruj sie !</a>
-	</p>
-</div>
+<% if user_signed_in? %>
+ 	<h1>Strefa klienta !!! - widok na walory</h1>
+<% else %>
+	<div class="center hero-unit">
+	<h1>FINALDO - wiesz ile masz :)</h1>
+		<p>
+			Póki co odwiedź naszego
+			<%= link_to  "bloga", "http://blog.finaldo.pl", target: "_blank" %>
+		</p>
+		<p>
+			<%= link_to "Zarejestruj sie !",  new_user_registration_path , class: "btn btn-large btn-primary" %>
+		</p>
+	</div>
+<% end %>
