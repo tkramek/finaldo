@@ -1,5 +1,5 @@
 <% if user_signed_in? %>
- 	<h1>Strefa klienta !!! - widok na walory</h1>
+	<%= link_to "Moje walory",  instruments_path , class: "btn btn-large btn-primary" %>
 <% else %>
 	<div class="center hero-unit">
 	<h1>FINALDO - wiesz ile masz :)</h1>
