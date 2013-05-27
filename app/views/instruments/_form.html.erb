@@ -1,0 +1,16 @@
+<%= simple_form_for(@instrument, html: { class: "form-horizontal"}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :shortname %>
+    <%= f.input :amount %>
+    <%= f.input :value %>
+    <%= f.input :buydate %>
+    <%= f.input :instrumentType %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+<% end %>

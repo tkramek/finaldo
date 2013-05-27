@@ -1,0 +1,26 @@
+
+    <h1>Listing instruments</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+			    <th>Name</th>
+			    <th>Shortname</th>
+			    <th>Amount</th>
+			    <th>Value</th>
+			    <th>Buydate</th>
+			    <th>InstrumentType</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <%= render @instruments %>
+        </tbody>
+    </table>
+
+<br />
+
+<%= link_to 'New Instrument', new_instrument_path %>
