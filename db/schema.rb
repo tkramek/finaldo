@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130527202720) do
+ActiveRecord::Schema.define(:version => 20130527212630) do
 
   create_table "instruments", :force => true do |t|
     t.string   "name"
@@ -22,7 +22,10 @@ ActiveRecord::Schema.define(:version => 20130527202720) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
     t.integer  "instrumentType"
+    t.integer  "user_id"
   end
+
+  add_index "instruments", ["user_id"], :name => "index_instruments_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

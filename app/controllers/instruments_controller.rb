@@ -1,8 +1,10 @@
 class InstrumentsController < ApplicationController
+  before_filter :authenticate_user! #, except: [:index]
+  
   # GET /instruments
   # GET /instruments.json
   def index
-    @instruments = Instrument.all
+    @instruments = current_user.instruments.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +15,7 @@ class InstrumentsController < ApplicationController
   # GET /instruments/1
   # GET /instruments/1.json
   def show
-    @instrument = Instrument.find(params[:id])
+    @instrument = current_user.instruments.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +26,7 @@ class InstrumentsController < ApplicationController
   # GET /instruments/new
   # GET /instruments/new.json
   def new
-    @instrument = Instrument.new
+    @instrument = current_user.instruments.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,13 +36,13 @@ class InstrumentsController < ApplicationController
 
   # GET /instruments/1/edit
   def edit
-    @instrument = Instrument.find(params[:id])
+    @instrument = current_user.instruments.find(params[:id])
   end
 
   # POST /instruments
   # POST /instruments.json
   def create
-    @instrument = Instrument.new(params[:instrument])
+    @instrument = current_user.instruments.new(params[:instrument])
 
     respond_to do |format|
       if @instrument.save
@@ -56,7 +58,7 @@ class InstrumentsController < ApplicationController
   # PUT /instruments/1
   # PUT /instruments/1.json
   def update
-    @instrument = Instrument.find(params[:id])
+    @instrument = current_user.instruments.find(params[:id])
 
     respond_to do |format|
       if @instrument.update_attributes(params[:instrument])
@@ -72,7 +74,7 @@ class InstrumentsController < ApplicationController
   # DELETE /instruments/1
   # DELETE /instruments/1.json
   def destroy
-    @instrument = Instrument.find(params[:id])
+    @instrument = current_user.instruments.find(params[:id])
     @instrument.destroy
 
     respond_to do |format|
