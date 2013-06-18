@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130527212630) do
+ActiveRecord::Schema.define(:version => 20130615171054) do
 
   create_table "instruments", :force => true do |t|
     t.string   "name"
@@ -23,6 +23,9 @@ ActiveRecord::Schema.define(:version => 20130527212630) do
     t.datetime "updated_at",     :null => false
     t.integer  "instrumentType"
     t.integer  "user_id"
+    t.integer  "capitalisation"
+    t.decimal  "percent"
+    t.decimal  "period"
   end
 
   add_index "instruments", ["user_id"], :name => "index_instruments_on_user_id"

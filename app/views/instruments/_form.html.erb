@@ -1,16 +1,19 @@
 <%= simple_form_for(@instrument, html: { class: "form-horizontal"}) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :shortname %>
-    <%= f.input :amount %>
-    <%= f.input :value %>
-    <%= f.input :buydate %>
-    <%= f.input :instrumentType %>
+  <div class="form-inputs"> 
+  	<%= f.input :instrumentType, label: "Typ waloru", :collection => [["Waluta",1],["Lokata", 2],["Akcja",3],["Fundusz inwestycyjny",4],["Oblibacja",5], ["Bon skarbowy",6]], :selected => 3 %>
+    <%= f.input :name, label: "Nazwa" %>
+    <%= f.input :shortname, label: "Skrót" %>
+    <%= f.input :amount, label: "Liczba jednostek" %>
+    <%= f.input :value, label: "Wartość jednostki" %>
+    <%= f.input :buydate, label: "Data zakupu" %>
+    <%= f.input :capitalisation, label: "Kapitalizacja", :collection => [["Dzienna",365],["Miesięczna",12],["Kwartalna",4],["Roczna",1]] %>
+    <%= f.input :percent, label: "Procent" %>
+    <%= f.input :period, label: "Okres" %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, class: "btn btn-primary" %>
+    <%= f.submit "Dodaj walor", class: "btn btn-primary" %>
   </div>
 <% end %>

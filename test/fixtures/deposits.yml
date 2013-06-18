@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  capitalisation: 1
+  percent: 9.99
+  period: 9.99
+
+two:
+  capitalisation: 1
+  percent: 9.99
+  period: 9.99

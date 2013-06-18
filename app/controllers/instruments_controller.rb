@@ -27,7 +27,6 @@ class InstrumentsController < ApplicationController
   # GET /instruments/new.json
   def new
     @instrument = current_user.instruments.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @instrument }
@@ -82,4 +81,9 @@ class InstrumentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def aaa
+  
+  end
+  
 end
