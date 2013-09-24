@@ -1,4 +1,5 @@
 class Instrument < ActiveRecord::Base
+  acts_as_predecessor
   attr_accessible :amount, :buydate, :name, :shortname, :value, :instrumentType, :capitalisation, :percent, :period
   
   def aaa

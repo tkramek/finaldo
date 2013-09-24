@@ -1,3 +1,3 @@
 class Bond < ActiveRecord::Base
-  # attr_accessible :title, :body
+  acts_as_heir_of :instrument
 end

@@ -11,13 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130903183215) do
+ActiveRecord::Schema.define(:version => 20130924204537) do
 
   create_table "alerts", :force => true do |t|
     t.string   "name"
     t.decimal  "value"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "blog_posts", :force => true do |t|
+    t.text "body"
   end
 
   create_table "bonds", :force => true do |t|
@@ -58,6 +62,8 @@ ActiveRecord::Schema.define(:version => 20130903183215) do
     t.integer  "capitalisation"
     t.decimal  "percent"
     t.decimal  "period"
+    t.integer  "heir_id"
+    t.string   "heir_type"
   end
 
   add_index "instruments", ["user_id"], :name => "index_instruments_on_user_id"
@@ -80,6 +86,14 @@ ActiveRecord::Schema.define(:version => 20130903183215) do
   end
 
   create_table "portfolio_value_histories", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "posts", :force => true do |t|
+    t.integer  "heir_id"
+    t.string   "heir_type"
+    t.string   "title"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
