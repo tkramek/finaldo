@@ -11,18 +11,40 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130924204537) do
+ActiveRecord::Schema.define(:version => 20130926043702) do
 
-  create_table "alerts", :force => true do |t|
-    t.string   "name"
+  create_table "portfolio", :force => true do |t|
     t.decimal  "value"
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  create_table "blog_posts", :force => true do |t|
-    t.text "body"
+
+  create_table "alerts", :force => true do |t|
+    t.string   "name"
+    t.decimal  "value"
+    t.string   "condition"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
+  
+  create_table "instrument_alerts", :force => true do |t|
+    t.integer  "instrument_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false    
+  end
+  
+  add_index "instrument_alerts", ["instrument_id"], :name => "index_instrument_alerts_on_instrument_id"
+  
+  create_table "portfolio_alerts", :force => true do |t|
+    t.integer  "portfolio_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+  
+  add_index "portfolio_alerts", ["portfolio_id"], :name => "index_portfolio_alerts_on_portfolio_id"
+  
 
   create_table "bonds", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -38,16 +60,12 @@ ActiveRecord::Schema.define(:version => 20130924204537) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  create_table "instrument_alerts", :force => true do |t|
+  
+ create_table "materials", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  create_table "instrument_value_histories", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
   create_table "instruments", :force => true do |t|
     t.string   "name"
@@ -55,45 +73,27 @@ ActiveRecord::Schema.define(:version => 20130924204537) do
     t.integer  "amount"
     t.decimal  "value"
     t.date     "buydate"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-    t.integer  "instrumentType"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "user_id"
-    t.integer  "capitalisation"
-    t.decimal  "percent"
-    t.decimal  "period"
     t.integer  "heir_id"
     t.string   "heir_type"
+  end
+  
+  create_table "instrument_value_histories", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "instruments", ["user_id"], :name => "index_instruments_on_user_id"
 
-  create_table "materials", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
-  create_table "portfolio", :force => true do |t|
-    t.decimal  "value"
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
-  create_table "portfolio_alerts", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
+
+
+
 
   create_table "portfolio_value_histories", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "posts", :force => true do |t|
-    t.integer  "heir_id"
-    t.string   "heir_type"
-    t.string   "title"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
