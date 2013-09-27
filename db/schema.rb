@@ -11,105 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130926043702) do
-
-  create_table "portfolio", :force => true do |t|
-    t.decimal  "value"
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-
-  create_table "alerts", :force => true do |t|
-    t.string   "name"
-    t.decimal  "value"
-    t.string   "condition"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-  
-  create_table "instrument_alerts", :force => true do |t|
-    t.integer  "instrument_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false    
-  end
-  
-  add_index "instrument_alerts", ["instrument_id"], :name => "index_instrument_alerts_on_instrument_id"
-  
-  create_table "portfolio_alerts", :force => true do |t|
-    t.integer  "portfolio_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-  
-  add_index "portfolio_alerts", ["portfolio_id"], :name => "index_portfolio_alerts_on_portfolio_id"
-  
-
-  create_table "bonds", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "currencies", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "deposits", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-  
- create_table "materials", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-
-  create_table "instruments", :force => true do |t|
-    t.string   "name"
-    t.string   "shortname"
-    t.integer  "amount"
-    t.decimal  "value"
-    t.date     "buydate"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "user_id"
-    t.integer  "heir_id"
-    t.string   "heir_type"
-  end
-  
-  create_table "instrument_value_histories", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "instruments", ["user_id"], :name => "index_instruments_on_user_id"
-
-
-
-
-
-
-
-  create_table "portfolio_value_histories", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "rights", :force => true do |t|
-    t.integer  "numberOfportfolios"
-    t.integer  "numberOfinstruments"
-    t.integer  "user_id"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-  end
-
-  create_table "shares", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
+ActiveRecord::Schema.define(:version => 20130926050836) do
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -128,10 +30,127 @@ ActiveRecord::Schema.define(:version => 20130926043702) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  
+ create_table "rights", :force => true do |t|
+    t.integer  "numberOfportfolios"
+    t.integer  "numberOfinstruments"
+    t.integer  "user_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+  
+  add_index "rights", ["user_id"], :name => "index_rights_on_user_id"
+  
+  create_table "instruments", :force => true do |t|
+    t.string   "name"
+    t.string   "shortname"
+    t.integer  "amount"
+    t.decimal  "value"
+    t.date     "buydate"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+    t.integer  "heir_id"
+    t.string   "heir_type"
+  end
 
-  create_table "value_histories", :force => true do |t|
+  add_index "instruments", ["user_id"], :name => "index_instruments_on_user_id"
+  
+  create_table "portfolios", :force => true do |t|
+    t.decimal  "value"
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+  
+  create_table "instruments2portfolios", :id => false do |t|
+	  t.integer  "instrument_id"
+	  t.integer  "portfolio_id"
+  end
+
+  add_index "instruments2portfolios", ["instrument_id", "portfolio_id"], :name => "index_instruments2portfolio_on_user_id"
+
+  create_table "materials", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+  
+  create_table "bonds", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "currencies", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "deposits", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "shares", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+  
+  
+ create_table "alerts", :force => true do |t|
+    t.string   "name"
+    t.decimal  "value"
+    t.string   "condition"
+    t.integer  "heir_id"
+    t.string   "heir_type"	
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+  
+  
+  create_table "instrument_alerts", :force => true do |t|
+    t.integer  "instrument_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "instrument_alerts", ["instrument_id"], :name => "index_instrument_alerts_on_instrument_id"
+
+  create_table "portfolio_alerts", :force => true do |t|
+    t.integer  "portfolio_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "portfolio_alerts", ["portfolio_id"], :name => "index_portfolio_alerts_on_portfolio_id"
+
+  
+  create_table "value_histories", :force => true do |t|
+    t.decimal  "value"
+    t.integer  "heir_id"
+    t.string   "heir_type"		
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+  
+  create_table "instrument_value_histories", :force => true do |t|
+    t.integer  "instrument_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+  
+    add_index "instrument_value_histories", ["instrument_id"], :name => "index_instrument_value_histories_on_instrument_id"
+  
+  create_table "portfolio_value_histories", :force => true do |t|
+    t.integer  "portfolio_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+  
+add_index "portfolio_value_histories", ["portfolio_id"], :name => "index_portfolio_value_histories_on_instrument_id"
+
+
+
+
+
 
 end

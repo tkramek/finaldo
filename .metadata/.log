@@ -1,0 +1,19 @@
+!SESSION 2013-09-27 07:57:47.505 -----------------------------------------------
+eclipse.buildId=3.4.2.201308081805
+java.version=1.6.0_24
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=pl_PL
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY com.aptana.terminal 1 0 2013-09-27 07:59:45.303
+!MESSAGE Starting terminal process failed.
+!STACK 1
+org.eclipse.core.runtime.CoreException: Shell executable could not be found.
+	at com.aptana.core.ShellExecutable.getPath(ShellExecutable.java:113)
+	at com.aptana.terminal.internal.configurations.WindowsMingwConfiguration.getCommandLine(WindowsMingwConfiguration.java:40)
+	at com.aptana.terminal.internal.ProcessLauncher.launch(ProcessLauncher.java:38)
+	at com.aptana.terminal.connector.LocalTerminalConnector.startProcess(LocalTerminalConnector.java:220)
+	at com.aptana.terminal.connector.LocalTerminalConnector.access$0(LocalTerminalConnector.java:208)
+	at com.aptana.terminal.connector.LocalTerminalConnector$1.run(LocalTerminalConnector.java:102)
+!SUBENTRY 1 com.aptana.core 4 0 2013-09-27 07:59:45.304
+!MESSAGE Shell executable could not be found.
