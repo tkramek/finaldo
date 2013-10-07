@@ -5,11 +5,13 @@ class InstrumentsController < ApplicationController
   # GET /portfolios/5/instruments
   def index
 
-    if params[:portfolio_id]
-      @instruments = current_user.portfolios.find(params[:portfolio_id]).instruments
-    else
+    #@instruments = current_user.portfolios.first.instruments
+    #if params[:portfolio_id]
+    
+    #  @instruments = current_user.portfolios.find(params[:portfolio_id]).instruments
+    #else
       @portfolios = current_user.portfolios
-    end
+    #end
 
 
 

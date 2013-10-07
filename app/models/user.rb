@@ -12,4 +12,10 @@ class User < ActiveRecord::Base
   #has_many :instruments
   has_many :portfolios
   #has_many :instruments, through: :portfolios
+  
+  after_save do
+    p = Portfolio.new
+    p.user_id = self.id
+    p.save
+  end
 end
