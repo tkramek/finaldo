@@ -1,12 +1,21 @@
 class InstrumentsController < ApplicationController
   before_filter :authenticate_user! #, except: [:index]
   
-  # GET /instruments
-  # GET /instruments.json
+  # GET /portfolios/:portfolio_id/instruments
+  # GET /portfolios/5/instruments
   def index
-    @instruments = current_user.portfolios.find(:all,
-    :joins => :portfolios_instruments,
-    :conditions => ['profile.age = ?', 33]).instruments# User.joins(:portfolios).where('portfolio.user_id = ?', 2).instruments.all
+
+    if params[:portfolio_id]
+      @instruments = current_user.portfolios.find(params[:portfolio_id]).instruments
+    else
+      @portfolios = current_user.portfolios
+    end
+
+
+
+    #current_user.portfolios.find(:all,
+    #:joins => :portfolios_instruments,
+    #:conditions => ['profile.age = ?', 33]).instruments# User.joins(:portfolios).where('portfolio.user_id = ?', 2).instruments.all
 
     respond_to do |format|
       format.html # index.html.erb
