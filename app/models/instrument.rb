@@ -4,12 +4,12 @@ class Instrument < ActiveRecord::Base
   def aaa
     InstrumentType.ToS(instrumentType)
   end
-  
-  has_and_belongs_to_many :portfolios
-  belongs_to :user
+  has_many :portfolios_instruments
+  has_many :portfolios, through: :portfolios_instruments 
 end
 
 
+#STI
 class InstrumentType
       @@dict = {1 => "Waluta", 2 => "Lokata", 3 => "Akcja", 4 => "Fundusz inwestycyjny", 5 => "Obligacja", 6 => "Bon skarbowy"}
   def self.ToS(type)
