@@ -5,7 +5,7 @@ class Instrument < ActiveRecord::Base
     InstrumentType.ToS(instrumentType)
   end
   
-  
+  has_and_belongs_to_many :portfolios
   belongs_to :user
 end
 

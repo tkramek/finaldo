@@ -4,7 +4,9 @@ class InstrumentsController < ApplicationController
   # GET /instruments
   # GET /instruments.json
   def index
-    @instruments = current_user.instruments.all
+    @instruments = current_user.portfolios.find(:all,
+    :joins => :portfolios_instruments,
+    :conditions => ['profile.age = ?', 33]).instruments# User.joins(:portfolios).where('portfolio.user_id = ?', 2).instruments.all
 
     respond_to do |format|
       format.html # index.html.erb
