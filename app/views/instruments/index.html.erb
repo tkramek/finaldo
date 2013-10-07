@@ -1,3 +1,8 @@
+<%= render @portfolios %>
+
+<% @portfolios.each do |portfolio|  %>
+    <%= render portfolio.instruments %>
+<% end %>
 
     <h1>Moje instrumenty finansowe</h1>
 
@@ -17,10 +22,10 @@
         </thead>
 
         <tbody>
-            <%= render @instruments %>
+            
         </tbody>
     </table>
 
 <br />
 
-<%= link_to 'Nowy instrument finansowy', new_instrument_path %>
+
