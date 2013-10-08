@@ -4,25 +4,32 @@
     <table class="table table-striped">
         <thead>
             <tr>
-			    <th>Nazwa</th>
-			    <th>Skrót</th>
-			    <th>Ilość</th>
-			    <th>Wartość</th>
-			    <th>Data zakupu</th>
-			    <th>Typ</th>
+          <th>Nazwa</th>
+          <th>Skrót</th>
+          <th>Ilość</th>
+          <th>Wartość</th>
+          <th>Data zakupu</th>
+          <th>Typ</th>
                 <th></th>
                 <th></th>
                 <th></th>
             </tr>
         </thead>
-
         <tbody>
-        	
-        	
-	        	<% @portfolios.each do |portfolio|  %>
-	    			<%= render portfolio.instruments %>
-				<% end %>
+          <% @portfolios.each do |portfolio|  %>
+            <%= render portfolio.instruments %>
+          <% end %>
         </tbody>
     </table>
-				<%= link_to 'Nowy instrument finansowy', new_portfolio_instrument_path %>
+    # Ten link poniżej nie może działać, bo nie ma przekazanego id portfela,
+    # przeklejam wpis z rake routes
+    # new_portfolio_instrument GET    /portfolios/:portfolio_id/instruments/new(.:format)      instruments#new
+    <%#<%= link_to 'Nowy instrument finansowy', new_portfolios_instrument_path %>
+    # link nie działa, bo nie ma przekazanego portfolio id, ale coś takiego już
+    # beðzie ok:
+    <%= link_to 'Nowy instrument finansowy', new_portfolio_instrument_path(@portfolios.first) %>
+    # metda #first weźmie nam pierwszy element z koleckcji @portfolios, czyli
+    # będzie to obiekt typu Portfolio
+    #
+    # Ponadto była literówka :)
 <br />
