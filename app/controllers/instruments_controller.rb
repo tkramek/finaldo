@@ -1,10 +1,9 @@
 class InstrumentsController < ApplicationController
   before_filter :authenticate_user! #, except: [:index]
-  
+
   # GET /portfolios/:portfolio_id/instruments
   # GET /portfolios/5/instruments
   def index
-
     #@instruments = current_user.portfolios.first.instruments
     #if params[:portfolio_id]
     
@@ -39,7 +38,7 @@ class InstrumentsController < ApplicationController
   # GET /instruments/new
   # GET /instruments/new.json
   def new
-    @instrument = current_user.instruments.new
+    @instrument = current_user.portfolios.find(params[:portfolio_id]).instruments.new
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @instrument }
@@ -94,9 +93,9 @@ class InstrumentsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   def aaa
-  
+
   end
-  
+
 end

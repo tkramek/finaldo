@@ -3,5 +3,5 @@ class Portfolio < ActiveRecord::Base
   #has_and_belongs_to_many :instruments
   belongs_to :user
   has_many :portfolios_instruments
-  has_many :instruments, through: :portfolios_instruments 
+  has_many :instruments, through: :portfolios_instruments
  end

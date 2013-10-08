@@ -1,4 +1,5 @@
-class PortfoliosInstrument < ActiveRecordBase
+class PortfoliosInstrument < ActiveRecord::Base
   belongs_to :portfolio
-  belongs_to :intstrument
+  #ten błąd co mi podesłałeś w pracy powodowany był przez literówkę.
+  belongs_to :instrument
 end
