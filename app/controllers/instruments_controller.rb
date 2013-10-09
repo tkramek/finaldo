@@ -52,19 +52,35 @@ class InstrumentsController < ApplicationController
 
   # POST /instruments
   # POST /instruments.json
-  def create
-    @instrument = current_user.instruments.new(params[:instrument])
+  #def create
+  #  @instrument = current_user.instruments.new(params[:instrument])
+  #
+   # respond_to do |format|    
+   #   if @instrument.save
+   #     format.html { redirect_to @instrument, notice: 'Instrument was successfully created.' }
+   #     format.json { render json: @instrument, status: :created, location: @instrument }
+   #   else
+   #     format.html { render action: "new" }
+   #     format.json { render json: @instrument.errors, status: :unprocessable_entity }
+   #   end
+   # end
+  #end
 
-    respond_to do |format|
-      if @instrument.save
-        format.html { redirect_to @instrument, notice: 'Instrument was successfully created.' }
-        format.json { render json: @instrument, status: :created, location: @instrument }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @instrument.errors, status: :unprocessable_entity }
-      end
+  def create
+
+  @portfolio = Portfolio.find(params[:portfolio_id])    
+  @instrument = @portfolio.instruments.create(params[:instrument])
+
+  respond_to do |format|
+    if @instrument.save
+      format.html { redirect_to([@portfolio,@instrument], :notice => 'Instrument was successfully created.') }
+      format.json  { render :json => @instrument, :status => :created, :location => @instrument }
+    else
+      format.html { render :action => "new" }
+      format.json  { render :json => @instrument.errors, :status => :unprocessable_entity }
     end
   end
+end
 
   # PUT /instruments/1
   # PUT /instruments/1.json
