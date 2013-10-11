@@ -1,8 +1,8 @@
-<%= simple_form_for([@portfolio,@instrument], html: { class: "form-horizontal"}) do |f| %>
+<%= simple_form_for([@portfolio, @instrument], html: { class: "form-horizontal"}) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs"> 
-  	<%= f.input :instrumentType, :input_html => {:onchange => 'myFunction()'}, label: "Typ waloru", :collection => [["Waluta",1],["Lokata", 2],["Akcja",3],["Fundusz inwestycyjny",4],["Oblibacja",5], ["Bon skarbowy",6]], :selected => 3 %>
+  <div class="form-inputs">
+  	<%= f.input :instrumentType, label: "Typ waloru", :collection => Instrument::DICT, prompt: false %>
     <%= f.input :name, label: "Nazwa" %>
     <div id="aaa"><%= f.input :shortname, label: "Skrót"%></div>
     <%= f.input :amount, label: "Liczba jednostek" %>

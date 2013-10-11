@@ -6,7 +6,7 @@ class InstrumentsController < ApplicationController
   def index
     #@instruments = current_user.portfolios.first.instruments
     #if params[:portfolio_id]
-    
+
     #  @instruments = current_user.portfolios.find(params[:portfolio_id]).instruments
     #else
       @portfolios = current_user.portfolios
@@ -20,14 +20,14 @@ class InstrumentsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @instruments }
+      format.json { render json: @portfolios }
     end
   end
 
   # GET /instruments/1
   # GET /instruments/1.json
   def show
-    @instrument = current_user.instruments.find(params[:id])
+    @instrument = current_user.portfolios.find(params[:portfolio_id]).instruments.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -38,7 +38,8 @@ class InstrumentsController < ApplicationController
   # GET /instruments/new
   # GET /instruments/new.json
   def new
-    @instrument = current_user.portfolios.find(params[:portfolio_id]).instruments.new
+    @portfolio = current_user.portfolios.find(params[:portfolio_id])
+    @instrument = @portfolio.instruments.new
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @instrument }
@@ -55,7 +56,7 @@ class InstrumentsController < ApplicationController
   #def create
   #  @instrument = current_user.instruments.new(params[:instrument])
   #
-   # respond_to do |format|    
+   # respond_to do |format|
    #   if @instrument.save
    #     format.html { redirect_to @instrument, notice: 'Instrument was successfully created.' }
    #     format.json { render json: @instrument, status: :created, location: @instrument }
@@ -68,12 +69,13 @@ class InstrumentsController < ApplicationController
 
   def create
 
-  @portfolio = Portfolio.find(params[:portfolio_id])    
+  @portfolio = current_user.portfolios.find(params[:portfolio_id])
+  params[:instrument][:type] = "TypeA"
   @instrument = @portfolio.instruments.create(params[:instrument])
 
   respond_to do |format|
     if @instrument.save
-      format.html { redirect_to([@portfolio,@instrument], :notice => 'Instrument was successfully created.') }
+      format.html { redirect_to(portfolio_path(@portfolio), :notice => 'Instrument was successfully created.') }
       format.json  { render :json => @instrument, :status => :created, :location => @instrument }
     else
       format.html { render :action => "new" }
