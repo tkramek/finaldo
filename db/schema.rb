@@ -11,7 +11,39 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131002222624) do
+ActiveRecord::Schema.define(:version => 20131011191332) do
+
+  create_table "alerts", :force => true do |t|
+    t.string   "name"
+    t.decimal  "value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "bonds", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "currencies", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "deposits", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "instrument_alerts", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "instrument_value_histories", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "instruments", :force => true do |t|
     t.string   "name"
@@ -26,9 +58,33 @@ ActiveRecord::Schema.define(:version => 20131002222624) do
     t.integer  "capitalisation"
     t.decimal  "percent"
     t.decimal  "period"
+    t.integer  "heir_id"
+    t.string   "heir_type"
   end
 
   add_index "instruments", ["user_id"], :name => "index_instruments_on_user_id"
+
+  create_table "materials", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "portfolio", :force => true do |t|
+    t.decimal  "value"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "portfolio_alerts", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "portfolio_value_histories", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "portfolios", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -41,6 +97,19 @@ ActiveRecord::Schema.define(:version => 20131002222624) do
   create_table "portfolios_instruments", :id => false, :force => true do |t|
     t.integer "portfolio_id"
     t.integer "instrument_id"
+  end
+
+  create_table "rights", :force => true do |t|
+    t.integer  "numberOfportfolios"
+    t.integer  "numberOfinstruments"
+    t.integer  "user_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  create_table "shares", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -60,5 +129,10 @@ ActiveRecord::Schema.define(:version => 20131002222624) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "value_histories", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 end
