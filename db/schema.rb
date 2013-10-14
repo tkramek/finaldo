@@ -60,18 +60,12 @@ ActiveRecord::Schema.define(:version => 20131011191332) do
     t.decimal  "period"
     t.integer  "heir_id"
     t.string   "heir_type"
+    t.string   "type"
   end
 
   add_index "instruments", ["user_id"], :name => "index_instruments_on_user_id"
 
   create_table "materials", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "portfolio", :force => true do |t|
-    t.decimal  "value"
-    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

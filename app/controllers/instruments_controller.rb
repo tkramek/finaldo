@@ -48,7 +48,8 @@ class InstrumentsController < ApplicationController
 
   # GET /instruments/1/edit
   def edit
-    @instrument = current_user.instruments.find(params[:id])
+    @portfolio = current_user.portfolios.find(params[:portfolio_id])
+    @instrument = @portfolio.instruments.find(params[:id])
   end
 
   # POST /instruments
@@ -70,12 +71,12 @@ class InstrumentsController < ApplicationController
   def create
 
   @portfolio = current_user.portfolios.find(params[:portfolio_id])
-  params[:instrument][:type] = "TypeA"
+  #params[:instrument][:type] = "TypeA"
   @instrument = @portfolio.instruments.create(params[:instrument])
 
   respond_to do |format|
     if @instrument.save
-      format.html { redirect_to(portfolio_path(@portfolio), :notice => 'Instrument was successfully created.') }
+      format.html { redirect_to(portfolios_path, :notice => 'Instrument was successfully created.') }
       format.json  { render :json => @instrument, :status => :created, :location => @instrument }
     else
       format.html { render :action => "new" }
@@ -87,11 +88,12 @@ end
   # PUT /instruments/1
   # PUT /instruments/1.json
   def update
-    @instrument = current_user.instruments.find(params[:id])
+    @portfolio = current_user.portfolios.find(params[:portfolio_id])
+    @instrument = @portfolio.instruments.find(params[:id])
 
     respond_to do |format|
       if @instrument.update_attributes(params[:instrument])
-        format.html { redirect_to @instrument, notice: 'Instrument was successfully updated.' }
+        format.html { redirect_to portfolios_path, notice: 'Instrument was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -103,11 +105,11 @@ end
   # DELETE /instruments/1
   # DELETE /instruments/1.json
   def destroy
-    @instrument = current_user.instruments.find(params[:id])
+    @portfolio = current_user.portfolios.find(params[:portfolio_id])
+    @instrument = @portfolio.instruments.find(params[:id])
     @instrument.destroy
-
     respond_to do |format|
-      format.html { redirect_to instruments_url }
+      format.html { redirect_to portfolios_path }
       format.json { head :no_content }
     end
   end

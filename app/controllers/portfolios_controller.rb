@@ -14,11 +14,13 @@ class PortfoliosController < ApplicationController
 
     #  @instruments = current_user.portfolios.find(params[:portfolio_id]).instruments
     #else
-      @portfolios = current_user.portfolios
+    @portfolios = current_user.portfolios
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @portfolios }
     end
     end
 
+    def edit
+    end
 end

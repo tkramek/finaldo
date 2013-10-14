@@ -4,9 +4,9 @@
     <td><%= instrument.amount %></td>
     <td><%= instrument.value %></td>
     <td><%= instrument.buydate %></td>
-    <!--<td><%= instrument.instrumentType %></td>-->
-    <td><%= instrument.aaa %></td>
-    <td><%= link_to 'Pokaż', instrument %></td>
-    <td><%= link_to 'Edytuj', edit_instrument_path(instrument) %></td>
-    <td><%= link_to 'Usuń', instrument, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%#= instrument.instrumentType %></td>
+    <td><%#= link_to 'Pokaż', instrument %></td>
+    <td><%= link_to 'Edytuj', edit_portfolio_instrument_path(portfolio,instrument) %></td>
+        <td><%#= link_to 'Edytuj', edit_portfolio_path(portfolio) %></td>
+    <td><%= link_to 'Usuń', portfolio_instrument_path(portfolio,instrument), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
