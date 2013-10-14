@@ -2,15 +2,13 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-  	<%= f.input :instrumentType, label: "Typ waloru", :collection => Instrument::DICT, prompt: false %>
+  	<%= f.input :type, label: "Typ waloru", :collection => Instrument::DICT, 
+    :label_method => :last, :value_method => :first, prompt: false %>
     <%= f.input :name, label: "Nazwa" %>
-    <div id="aaa"><%= f.input :shortname, label: "Skrót"%></div>
-    <%= f.input :amount, label: "Liczba jednostek" %>
-    <%= f.input :value, label: "Wartość jednostki" %>
-    <%= f.input :buydate, label: "Data zakupu" %>
+    <%= f.input :units, label: "Liczba jednostek" %>
+    <%= f.input :begin_value, label: "Wartość jednostki" %>
+    <%= f.input :buy_date, label: "Data zakupu" %>
     <%= f.input :capitalisation, label: "Kapitalizacja", :collection => [["Dzienna",365],["Miesięczna",12],["Kwartalna",4],["Roczna",1]] %>
-    <%= f.input :percent, label: "Procent" %>
-    <%= f.input :period, label: "Okres" ,  :input_html => {:onFocus => 'document.getElementById("aaa").style.visibility="hidden"'} %>
   </div>
 
   <div class="form-actions">

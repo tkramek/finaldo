@@ -19,8 +19,8 @@ class PortfoliosController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @portfolios }
     end
-    end
+  end
 
-    def edit
-    end
+  def edit
+  end
 end

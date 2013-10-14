@@ -13,71 +13,22 @@
 
 ActiveRecord::Schema.define(:version => 20131011191332) do
 
-  create_table "alerts", :force => true do |t|
-    t.string   "name"
-    t.decimal  "value"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "bonds", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "currencies", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "deposits", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "instrument_alerts", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "instrument_value_histories", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
   create_table "instruments", :force => true do |t|
     t.string   "name"
-    t.string   "shortname"
-    t.integer  "amount"
-    t.decimal  "value"
-    t.date     "buydate"
+    t.string   "friendly_name"
+    t.text     "description"
+    t.integer  "units"
+    t.date     "buy_date"
+    t.decimal  "interest_rate"
+    t.integer  "capitalisation"
+    t.decimal  "begin_value"
+    t.decimal  "end_value"
+    t.datetime "evaluation_date"
+    t.integer  "currency_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
-    t.integer  "instrumentType"
-    t.integer  "user_id"
-    t.integer  "capitalisation"
-    t.decimal  "percent"
-    t.decimal  "period"
-    t.integer  "heir_id"
-    t.string   "heir_type"
     t.string   "type"
-  end
-
-  add_index "instruments", ["user_id"], :name => "index_instruments_on_user_id"
-
-  create_table "materials", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "portfolio_alerts", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "portfolio_value_histories", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "portfolios", :force => true do |t|
@@ -87,21 +38,28 @@ ActiveRecord::Schema.define(:version => 20131011191332) do
   end
 
   add_index "portfolios", ["user_id"], :name => "index_portfolios_on_user_id"
-
+ 
   create_table "portfolios_instruments", :id => false, :force => true do |t|
     t.integer "portfolio_id"
     t.integer "instrument_id"
+  end  
+
+  create_table "alerts", :force => true do |t|
+    t.string   "name"
+    t.decimal  "value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "rights", :force => true do |t|
-    t.integer  "numberOfportfolios"
-    t.integer  "numberOfinstruments"
+    t.integer  "portfolios_amount"
+    t.integer  "instruments_amount"
     t.integer  "user_id"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
   end
 
-  create_table "shares", :force => true do |t|
+  create_table "values_history", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -123,10 +81,5 @@ ActiveRecord::Schema.define(:version => 20131011191332) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-
-  create_table "value_histories", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
 end
