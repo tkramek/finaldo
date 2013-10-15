@@ -3,7 +3,7 @@ class Instrument < ActiveRecord::Base
   				  :buy_date, :interest_rate, :capitalisation, 
   				  :begin_value, :end_value, :evaluation_date, :type
 
-  DICT = {"Currency" => "Waluta", 2 => "Lokata", 3 => "Akcja", 4 => "Fundusz inwestycyjny", 5 => "Obligacja", 6 => "Bon skarbowy"}
+  DICT = {"Currency" => "Waluta"} #, 2 => "Lokata", 3 => "Akcja", 4 => "Fundusz inwestycyjny", 5 => "Obligacja", 6 => "Bon skarbowy"}
 
   has_many :portfolios_instruments
   has_many :portfolios, through: :portfolios_instruments
