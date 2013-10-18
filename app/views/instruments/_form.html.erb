@@ -1,9 +1,9 @@
-<%= simple_form_for([@portfolio, @instrument], :url => portfolio_instrument_path, html: { class: "form-horizontal"}) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-  	<%= f.input :type, label: "Typ waloru", :collection => Instrument::DICT, 
-    :label_method => :last, :value_method => :first, prompt: false %>
+<%= simple_form_for([@portfolio, @instrument.becomes(Instrument)], html: { class: "form-horizontal"}) do |f| %>
+	<% f.object = @instrument.becomes(@instrument.class) %>
+	<%= f.error_notification %>
+	<div class="form-inputs">
+	
+  	<%= f.input :type, label: "Typ waloru", :collection => Instrument::DICT, :label_method => :last, :value_method => :first, prompt: false %>
     <%= f.input :name, label: "Nazwa" %>
     <%= f.input :friendly_name, label: "Nazwa skrótowa" %>
     <%= f.input :description, label: "Opis", :input_html => { :cols => 15, :rows => 5 } %>
