@@ -8,10 +8,14 @@
     <%= f.input :friendly_name, label: "Nazwa skrótowa" %>
     <%= f.input :description, label: "Opis", :input_html => { :cols => 15, :rows => 5 } %>
     <%= f.input :units, label: "Liczba jednostek" %>
+    <%= f.input :instrument_currency_id, label: "Waluta", :collection => InstrumentCurrency.all, :label_method => :short_name, :value_method => :id, prompt: false %>
     <%= f.input :interest_rate, label: "Oprocentowanie" %> 
-    <%= f.input :begin_value, label: "Wartość jednostki" %>
+    <%= f.input :capitalisation, label: "Kapitalizacja", :collection => Deposit::CapitalizationType, :label_method => :last, :value_method => :first, prompt: false%>
+    <%= f.input :begin_value, label: "Wartość początkowa" %>
+    <%= f.input :end_value, label: "Wartość końcowa" %>
     <%= f.input :buy_date, label: "Data zakupu" %>
-    <%= f.input :capitalisation, label: "Kapitalizacja", :collection => [["Dzienna",365],["Miesięczna",12],["Kwartalna",4],["Roczna",1]] %>
+    <%= f.input :evaluation_date, label: "Data wyceny" %>
+
   </div>
 
   <div class="form-actions">
